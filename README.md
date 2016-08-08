@@ -3,3 +3,4 @@
 ## Progress
 
 - [x] All you need is lambda
+- [x] Hello, Haskell!

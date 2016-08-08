@@ -1,3 +1,5 @@
+# All You Need is Lambda
+
 A calculus is a method of calculation or reasoning; the lambda calculus is one process for formalizing a method.
 
 The essence of functional programming is that programs are a combination of expressions.
