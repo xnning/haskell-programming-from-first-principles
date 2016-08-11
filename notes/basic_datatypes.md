@@ -17,3 +17,56 @@ six categories of entities that have names.
   - term-level: variables, data constructors
   - type-level: type variables, type constructors, typeclasses
   - modules.
+
+## Exercises
+
+1. `length :: Foldable t => t a -> Int`
+2. 5; 3; 3; 4
+3. `6 / length [1, 2, 3]`
+4. should use `div`
+5. Bool; True
+6. Bool; False
+7. True; not work; 5; False; not work
+8.
+``` haskell
+isPalindrome :: (Eq a) => [a] -> Bool
+isPalindrome x = reverse x == x
+```
+9.
+``` haskell
+myAbs :: Integer -> Integer
+myAbs x = if x >= 0 then x else -x
+```
+10.
+``` haskell
+f :: (a, b) -> (c, d) -> ((b, d), (a, c))
+let f x y = ((snd x, snd y), (fst x, fst y))
+```
+
+### Correcting syntax
+
+1.
+``` haskell
+x = (+)
+f xs = w `x` 1
+where w = length xs
+```
+2.
+``` haskell
+\x=x
+```
+3.
+``` haskell
+\(x : xs) -> x
+```
+4.
+``` haskell
+f (a, b) = a
+```
+
+### Match the function names to their types
+
+1. c
+2. b
+3. a
+4. d

@@ -5,4 +5,4 @@
 - [x] All you need is lambda
 - [x] Hello, Haskell!
 - [x] Strings
-- [ ] Basic datatypes
+- [x] Basic datatypes
