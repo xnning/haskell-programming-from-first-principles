@@ -7,3 +7,4 @@
 - [x] Strings
 - [x] Basic datatypes
 - [x] Types
+- [ ] Typeclasses
