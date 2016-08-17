@@ -38,27 +38,25 @@ Exercises
 
 **Does it typecheck?**
 
-1. No. No instance of Show.
-
+> -- 1. No. No instance of Show.
 > data Person = Person Bool deriving (Show)
 >
 > printPerson :: Person -> IO ()
 > printPerson person = putStrLn (show person)
-
-2. No. No instance of Eq.
-
+>
+> -- 2. No. No instance of Eq.
 > data Mood = Blah
 >           | Woot deriving (Show, Eq)
 >
 > settleDown x = if x == Woot then Blah else x
-
-3. settleDown
-    - Blah, Woot only.
-    - Error. Number cannot be tested equal with Mood.
-    - Error. No instance of Ord.
-
-4. Yes.
-
+>
+>  -- 3.
+>  -- - Blah, Woot only.
+>  -- - Error. Number cannot be tested equal with Mood.
+>  -- - Error. No instance of Ord.
+>
+>  -- 4. Yes.
+>
 > type Subject = String
 > type Verb = String
 > type Object = String
@@ -73,21 +71,18 @@ Exercises
 > data Rocks = Rocks String deriving (Eq, Show)
 > data Yeah = Yeah Bool deriving (Eq, Show)
 > data Papu = Papu Rocks Yeah deriving (Eq, Show)
-
-1. No
-
+>
+> -- 1. No
 > phew = Papu (Rocks "chases") (Yeah True)
-
-2. Yes
-
+>
+> -- 2. Yes
 > truth = Papu (Rocks "chomskydoz") (Yeah True)
-
-3. Yes
-
+>
+> -- 3. Yes
 > equalityForall :: Papu -> Papu -> Bool
 > equalityForall p p' = p == p'
-
-4. No. No instance of Ord.
+>
+> -- 4. No. No instance of Ord.
 
 **Match the types**
 

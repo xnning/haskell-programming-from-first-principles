@@ -1,21 +1,11 @@
 Typeclasses
 -----------
 
--   Typeclasses and types in Haskell are, in a sense, opposites: where a
-    declaration of a type defines how that type in particular is
-    created, a declaration of a typeclass defines how a set of types are
-    consumed or used in computations.
+-   Typeclasses and types in Haskell are, in a sense, opposites: where a declaration of a type defines how that type in particular is created, a declaration of a typeclass defines how a set of types are consumed or used in computations.
 
--   When you have a typeclass-constrained (ad-hoc) polymorphic value and
-    need to evaluate it, the polymorphism must be resolved to a specific
-    concrete type. But in some cases, particularly when you’re working
-    in the GHCi REPL you will not have specified a concrete type for a
-    polymorphic value. In those situations, the typeclass will default
-    to a concrete type, and the default types are already set in
-    the libraries.
+-   When you have a typeclass-constrained (ad-hoc) polymorphic value and need to evaluate it, the polymorphism must be resolved to a specific concrete type. But in some cases, particularly when you’re working in the GHCi REPL you will not have specified a concrete type for a polymorphic value. In those situations, the typeclass will default to a concrete type, and the default types are already set in the libraries.
 
--   The Haskell Report3 specifies the following defaults relevant to
-    numerical computations:
+-   The Haskell Report3 specifies the following defaults relevant to numerical computations:
     -   default Num Integer
     -   default Real Integer
     -   default Enum Integer
@@ -24,26 +14,15 @@ Typeclasses
     -   default RealFrac Double
     -   default Floating Double
     -   default RealFloat Double
--   The use of polymorphic values without the ability to infer a
-    specific type and no default rule will cause GHC to complain about
-    an ambiguous type.
+-   The use of polymorphic values without the ability to infer a specific type and no default rule will cause GHC to complain about an ambiguous type.
 
--   Haskell introduced and refined a means of writing ordinary programs
-    that talk to the outside world without adding anything to the pure
-    lambda calculus it is founded on. This property -- being lambda
-    calculus and nothing more -- is what makes Haskell a purely
-    functional programming language.
+-   Haskell introduced and refined a means of writing ordinary programs that talk to the outside world without adding anything to the pure lambda calculus it is founded on. This property -- being lambda calculus and nothing more -- is what makes Haskell a purely functional programming language.
 
--   Typeclass instances we can magically derive are `Eq`, `Ord`, `Enum`,
-    `Bounded`, `Read`, and `Show`, though there are some constraints on
-    deriving some of these.
+-   Typeclass instances we can magically derive are `Eq`, `Ord`, `Enum`, `Bounded`, `Read`, and `Show`, though there are some constraints on deriving some of these.
 
--   Read is a partial function, a function that doesn't return a proper
-    value as a result for all possible inputs.
+-   Read is a partial function, a function that doesn't return a proper value as a result for all possible inputs.
 
--   If we turn all warnings on with the `Wall` flag in our REPL or in
-    our build configuration, then GHC will let us know when we’re not
-    handling all cases: `:set -Wall`
+-   If we turn all warnings on with the `Wall` flag in our REPL or in our build configuration, then GHC will let us know when we’re not handling all cases: `:set -Wall`
 
 Exercises
 =========
@@ -58,32 +37,26 @@ Exercises
 
 **Does it typecheck?**
 
-1.  No. No instance of Show.
-
-``` {.sourceCode .literate .haskell}
+``` sourceCode
+-- 1. No. No instance of Show.
 data Person = Person Bool deriving (Show)
 
 printPerson :: Person -> IO ()
 printPerson person = putStrLn (show person)
-```
 
-2.  No. No instance of Eq.
-
-``` {.sourceCode .literate .haskell}
+-- 2. No. No instance of Eq.
 data Mood = Blah
           | Woot deriving (Show, Eq)
 
 settleDown x = if x == Woot then Blah else x
-```
 
-3.  settleDown
-    -   Blah, Woot only.
-    -   Error. Number cannot be tested equal with Mood.
-    -   Error. No instance of Ord.
+ -- 3.
+ -- - Blah, Woot only.
+ -- - Error. Number cannot be tested equal with Mood.
+ -- - Error. No instance of Ord.
 
-4.  Yes.
+ -- 4. Yes.
 
-``` {.sourceCode .literate .haskell}
 type Subject = String
 type Verb = String
 type Object = String
@@ -96,32 +69,23 @@ s2 = Sentence "Julie" "loves" "dogs"
 
 **Given a datatype declaration, what can we do?**
 
-``` {.sourceCode .literate .haskell}
+``` sourceCode
 data Rocks = Rocks String deriving (Eq, Show)
 data Yeah = Yeah Bool deriving (Eq, Show)
 data Papu = Papu Rocks Yeah deriving (Eq, Show)
-```
 
-1.  No
-
-``` {.sourceCode .literate .haskell}
+-- 1. No
 phew = Papu (Rocks "chases") (Yeah True)
-```
 
-2.  Yes
-
-``` {.sourceCode .literate .haskell}
+-- 2. Yes
 truth = Papu (Rocks "chomskydoz") (Yeah True)
-```
 
-3.  Yes
-
-``` {.sourceCode .literate .haskell}
+-- 3. Yes
 equalityForall :: Papu -> Papu -> Bool
 equalityForall p p' = p == p'
-```
 
-4.  No. No instance of Ord.
+-- 4. No. No instance of Ord.
+```
 
 **Match the types**
 
@@ -139,7 +103,7 @@ equalityForall p p' = p == p'
 
 **Type-Kwon-Do Two: Electric Typealoo**
 
-``` {.sourceCode .literate .haskell}
+``` sourceCode
 --1
 chk :: Eq b => (a -> b) -> a -> b -> Bool
 chk f a b = (f a) == b
