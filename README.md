@@ -2,9 +2,9 @@
 
 ## Progress
 
-- [x] All you need is lambda
-- [x] Hello, Haskell!
-- [x] Strings
-- [x] Basic datatypes
-- [x] Types
-- [x] Typeclasses
+- [x] [All you need is lambda](./notes/all_you_need_is_lambda.md)
+- [x] [Hello, Haskell!](./notes/hello_haskell.md)
+- [x] [Strings](./notes/strings.md)
+- [x] [Basic datatypes](./notes/basic_datatypes.md)
+- [x] [Types](./notes/types.md)
+- [x] [Typeclasses](./notes/typeclasses.md)
