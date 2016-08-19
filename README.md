@@ -8,3 +8,4 @@
 - [x] [Basic datatypes](./notes/basic_datatypes.md)
 - [x] [Types](./notes/types.md)
 - [x] [Typeclasses](./notes/typeclasses.md)
+- [x] [More functional patterns](./notes/more_functional_patterns.md)
