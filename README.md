@@ -10,3 +10,4 @@
 - [x] [Typeclasses](./notes/typeclasses.md)
 - [x] [More functional patterns](./notes/more_functional_patterns.md)
 - [x] [Recursion](./notes/recursion.md)
+- [ ] Lists
