@@ -85,7 +85,7 @@ Exercises
 **Exercises: More Bottoms**
 
 1. bottom
-2. 2.
+2. 2
 3. bottom
 4. return a list of boolean which indicates the character is in "aeiou" or not.
 5. [1,4,9,16,25,36,49,64,81,100]; [1,10,20]; [15,15,15]
@@ -169,3 +169,35 @@ Chapter Exercises
 > myReverse :: [a] -> [a]
 > myReverse [] = []
 > myReverse (x:xs) = myReverse xs ++ [x]
+>
+> -- 5
+> squish :: [[a]] -> [a]
+> squish [] = []
+> squish (x:xs) = x ++ (squish xs)
+>
+> -- 6
+> squishMap :: (a -> [b]) -> [a] -> [b]
+> squishMap _ [] = []
+> squishMap f (x:xs) = f x ++ squishMap f xs
+>
+> -- 7
+> squishAgain :: [[a]] -> [a]
+> squishAgain = squishMap id
+>
+> -- 8
+> myMaximumBy :: (a -> a -> Ordering) -> [a] -> a
+> myMaximumBy comp (x:xs) = go comp xs x
+>  where go _ [] cur = cur
+>        go comp (x:xs) cur = go comp xs (if comp cur x == GT then cur else x)
+>
+> -- 9
+> myMinimumBy :: (a -> a -> Ordering) -> [a] -> a
+> myMinimumBy comp (x:xs) = go comp xs x
+>  where go _ [] cur = cur
+>        go comp (x:xs) cur = go comp xs (if comp cur x == LT then cur else x)
+>
+> myMaximum :: (Ord a) => [a] -> a
+> myMaximum = myMaximumBy compare
+>
+> myMinimum :: (Ord a) => [a] -> a
+> myMinimum = myMinimumBy compare
