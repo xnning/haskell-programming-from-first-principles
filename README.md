@@ -11,4 +11,4 @@
 - [x] [More functional patterns](./notes/more_functional_patterns.md)
 - [x] [Recursion](./notes/recursion.md)
 - [x] [Lists](./notes/lists.md)
-- [ ] Folding lists
+- [x] Folding lists
