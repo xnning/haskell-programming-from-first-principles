@@ -12,3 +12,4 @@
 - [x] [Recursion](./notes/recursion.md)
 - [x] [Lists](./notes/lists.md)
 - [x] [Folding lists](./notes/folding_lists.md)
+- [ ] Algebraic datatypes
