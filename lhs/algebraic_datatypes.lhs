@@ -6,6 +6,8 @@ Algebraic datatypes
 - cardinality
     - Nullary constructors represent one value
     - Unary constructor always have the same cardinality as the type they contain.
+    - Sum types are + or addition.
+    - Product types are product or multiplication.
 
 - `newtype`: define a type that can only ever have a single unary data constructor.
     - A advantages over a vanilla data declaration: no runtime overhead, as it reuses the representation of the type it contains. The difference between newtype and the type it contains is gone by the time the compiler generates the code.
@@ -15,10 +17,14 @@ Algebraic datatypes
 
 - A language pragma `GeneralizedNewtypeDeriving` allow our newtype to rely on a typeclass instance for the type it contains.
 
+- Whenever we have a product that uses record accessors, keep it separate of any sum type that is wrapping it. To do this, split out the product into an independent type with its own type constructor.
+
 Extra
 =========================
 
 > {-# LANGUAGE FlexibleInstances #-}
+
+> import Data.List
 
 Exericses
 =========================
@@ -92,3 +98,82 @@ Exericses
 >    tooMany (i1, i2) = tooMany (i1 + i2)
 > instance (Num a, TooMany a) => TooMany (a, a) where
 >    tooMany (i1, i2) = tooMany (i1 + i2)
+
+**Exercises: Pity the Bool**
+
+1. 4
+2. 258; out of range error
+
+**Exercises: Jammin**
+
+> data Fruit = Peach | Plum | Apple | Blackberry deriving (Eq, Show, Ord)
+> -- 2
+> data JamJars = Jam { fruit :: Fruit, jars :: Int} deriving (Eq, Show)
+> -- 3. 4 * num of Int
+>
+> row1 = Jam {fruit = Peach, jars = 5}
+> row2 = Jam {fruit = Peach, jars = 3}
+> row3 = Jam {fruit = Plum, jars = 8}
+> row4 = Jam {fruit = Plum, jars = 4}
+> row5 = Jam {fruit = Apple, jars = 10}
+> row6 = Jam {fruit = Blackberry, jars = 7}
+> row7 = Jam {fruit = Blackberry, jars = 4}
+> allJam = [row1, row2, row3, row4, row5, row6, row7]
+> -- 5
+> mapJars :: [JamJars] -> [Int]
+> mapJars = map jars
+>
+> -- 6
+> sumJars :: [JamJars] -> Int
+> sumJars = sum . (map jars)
+>
+> -- 7
+> maxJars :: [JamJars] -> JamJars
+> maxJars [] = undefined
+> maxJars js = foldr (\a b -> if jars a > jars b then a else b) (head js) js
+>
+> -- 9
+>
+> compareKind (Jam k _) (Jam k' _) = compare k k'
+> sortJars :: [JamJars] -> [JamJars]
+> sortJars = sortBy compareKind
+>
+> -- 10
+> groupJars :: [JamJars] -> [[JamJars]]
+> groupJars = groupBy (\a b -> fruit a == fruit b) . sortJars
+
+**Exercises: How Does Your Garden Grow?**
+
+> type Gardener = String
+> data Garden =
+>    Gardenia Gardener
+>  | Daisy Gardener
+>  | Rose Gardener
+>  | Lilac Gardener deriving (Show)
+
+**Exercise: Programmers**
+
+> data OperatingSystem = GnuPlusLinux
+>    | OpenBSDPlusNevermindJustBSDStill | Mac
+>    | Windows deriving (Eq, Show)
+>
+> data ProgrammingLanguage =  Haskell | Agda | Idris | PureScript deriving (Eq, Show)
+> data Programmer =
+>   Programmer { os :: OperatingSystem
+>              , lang :: ProgrammingLanguage } deriving (Eq, Show)
+>
+> allOperatingSystems :: [OperatingSystem]
+> allOperatingSystems =
+>     [ GnuPlusLinux
+>     , OpenBSDPlusNevermindJustBSDStill , Mac
+>     , Windows
+>     ]
+>
+> allLanguages :: [ProgrammingLanguage]
+> allLanguages = [Haskell, Agda, Idris, PureScript]
+>
+> allProgrammers :: [Programmer]
+> allProgrammers = [Programmer os lang | os <- allOperatingSystems
+>                                      , lang <- allLanguages]
+>
+>
