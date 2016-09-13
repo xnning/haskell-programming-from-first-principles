@@ -8,6 +8,7 @@ Algebraic datatypes
     - Unary constructor always have the same cardinality as the type they contain.
     - Sum types are + or addition.
     - Product types are product or multiplication.
+    - Function type is the exponent operator.
 
 - `newtype`: define a type that can only ever have a single unary data constructor.
     - A advantages over a vanilla data declaration: no runtime overhead, as it reuses the representation of the type it contains. The difference between newtype and the type it contains is gone by the time the compiler generates the code.
@@ -24,7 +25,8 @@ Extra
 
 > {-# LANGUAGE FlexibleInstances #-}
 
-> import Data.List
+> import Data.List (sortBy, groupBy, findIndex, intercalate)
+> import Data.Char
 
 Exericses
 =========================
@@ -175,5 +177,105 @@ Exericses
 > allProgrammers :: [Programmer]
 > allProgrammers = [Programmer os lang | os <- allOperatingSystems
 >                                      , lang <- allLanguages]
+
+**Exponentiation in what order?**
+
+Yes.
+
+**Exercises: The Quad**
+
+1. 4 + 4 = 8
+2. 4 * 4 = 16
+3. 4 ^ 4 = 256
+4. 2 * 2 * 2 = 8
+5. 2 ^ 2 ^ 2 = 16
+6. 2 ^ 4 ^ 4 = 16384
+
+**Binary Tree**
+
+> data BinaryTree a =
+>       Leaf
+>     | Node (BinaryTree a) a (BinaryTree a)
+>     deriving (Eq, Ord, Show)
+>
+> mapTree :: (a -> b) -> BinaryTree a -> BinaryTree b
+> mapTree _ Leaf = Leaf
+> mapTree f (Node left a right) = Node (mapTree f left) (f a) (mapTree f right)
+>
+> preorder :: BinaryTree a -> [a]
+> preorder Leaf = []
+> preorder (Node left a right) = a : preorder left ++ preorder right
+>
+> inorder :: BinaryTree a -> [a]
+> inorder Leaf = []
+> inorder (Node left a right) = inorder left ++ [a] ++ inorder right
+>
+> postorder :: BinaryTree a -> [a]
+> postorder Leaf = []
+> postorder (Node left a right) = postorder left ++ postorder right ++ [a]
+>
+> foldTree :: (a -> b -> b) -> b -> BinaryTree a -> b
+> foldTree _ v Leaf = v
+> foldTree f v (Node left a right) = foldTree f (f a (foldTree f v left)) right
+
+Chapter Exercises
+=========================
+
+**Multiple choice**
+
+1. a
+2. c
+3. b
+4. c
+
+**Ciphers**
+
+> vigenereChar num char = chr (ord 'a' + shift)
+>    where distance = ord char - ord 'a'
+>          shift = (distance + num) `mod` 26
+>
+> -- word for single word
+> vigenere str key = zipWith vigenereChar (map num (cycle key)) str
+>    where num k = ord k - ord 'a'
+>
+> unVigenere str key = zipWith vigenereChar (map num (cycle key)) str
+>    where num k = 26 - (ord k - ord 'a')
+
+**As-patterns**
+
+> -- 1
+> isSubsequenceOf :: (Eq a) => [a] -> [a] -> Bool
+> isSubsequenceOf [] _ = True
+> isSubsequenceOf (h1:_) [] = False
+> isSubsequenceOf l1@(h1:t1) (h2:t2) =
+>     if h1 == h2 then isSubsequenceOf t1 t2 else isSubsequenceOf l1 t2
+>
+> -- 2
+> capitalizeWords :: String -> [(String, String)]
+> capitalizeWords = map f . words
+>     where f s@(h:t) = (s, toUpper h : t)
+
+**Language exercises**
+
+> -- 1
+> capitalizeWord :: String -> String
+> capitalizeWord [] = []
+> capitalizeWord (h:t) = toUpper h : t
+>
+> -- 2
+> capitalizeParagraph :: String -> String
+> capitalizeParagraph sen = intercalate " " . map f $ sens
+>     where sens = splitSentences sen
+>           f = unwords . (\(h:t) -> capitalizeWord h : t) . words
+>
+> splitSentences :: String -> [String]
+> splitSentences [] = []
+> splitSentences str =
+>   case findIndex (== '.') str of
+>     Just num -> let (fst, snd) = splitAt (num + 1) str
+>                 in fst : splitSentences (dropWhile (== ' ') snd)
+>     Nothing -> [str]
+>
+>
 >
 >
