@@ -330,3 +330,17 @@ Chapter Exercises
 >                 , ('6', "mno6"), ('7', "pqrs7")
 >                 , ('8', "tuv8"), ('9', "wxyz9")
 >                 ]
+
+**Hutton’s Razor**
+
+> data Expr
+>     = Lit Integer
+>     | Add Expr Expr
+>
+> eval :: Expr -> Integer
+> eval (Lit n) = n
+> eval (Add e1 e2) = (eval e1) + (eval e2)
+>
+> printExpr :: Expr -> String
+> printExpr (Lit n) = show n
+> printExpr (Add e1 e2) = printExpr e1 ++ " + " ++ printExpr e2
