@@ -25,8 +25,9 @@ Extra
 
 > {-# LANGUAGE FlexibleInstances #-}
 
-> import Data.List (sortBy, groupBy, findIndex, intercalate)
+> import Data.List (sortBy, groupBy, findIndex, intercalate, elemIndex, sort, group, maximumBy)
 > import Data.Char
+> import Data.Ord (comparing)
 
 Exericses
 =========================
@@ -275,7 +276,57 @@ Chapter Exercises
 >     Just num -> let (fst, snd) = splitAt (num + 1) str
 >                 in fst : splitSentences (dropWhile (== ' ') snd)
 >     Nothing -> [str]
+
+**Phone exercise**
+
 >
+> data DaPhone = DaPhone [(Char, String)]
 >
+> -- validButtons = "1234567890*#"
+> type Digit = Char
 >
+> -- Valid presses: 1 and up
+> type Presses = Int
 >
+> reverseTaps :: DaPhone -> Char -> [(Digit, Presses)]
+> reverseTaps phone c =
+>     if isUpper c
+>     then [('*', 1), tap phone (toLower c)]
+>     else [tap phone c]
+>
+> tap :: DaPhone -> Char -> (Digit, Presses)
+> tap (DaPhone ((digit, press):tl)) c =
+>     case elemIndex c press of
+>       Just idx -> (digit, idx + 1)
+>       Nothing -> tap (DaPhone tl) c
+>
+> cellPhonesDead :: DaPhone -> String -> [(Digit, Presses)]
+> cellPhonesDead phone = foldMap (reverseTaps phone)
+>
+> -- 3
+> fingerTaps :: [(Digit, Presses)] -> Presses
+> fingerTaps = sum . map snd
+>
+> -- 4
+> mostPopularLetter :: String -> Char
+> mostPopularLetter = head . maximumBy (comparing length) . group . sort
+>
+> mostPopularLetterCost :: DaPhone -> String -> Presses
+> mostPopularLetterCost phone s = (fingerTaps cost) * len
+>     where c = maximumBy (comparing length) . group . sort $ s
+>           len = length c
+>           cost = reverseTaps phone (head c)
+>
+> -- 5
+> coolestLtr :: [String] -> Char
+> coolestLtr = mostPopularLetter . concat
+>
+> coolestWord :: [String] -> String
+> coolestWord = head . maximumBy (comparing length) . group . sort . (foldMap words)
+>
+> phone = DaPhone [ ('0', "0"), ('1', "1")
+>                 , ('2', "abc2"), ('3', "def3")
+>                 , ('4', "ghi4"), ('5', "jkl5")
+>                 , ('6', "mno6"), ('7', "pqrs7")
+>                 , ('8', "tuv8"), ('9', "wxyz9")
+>                 ]
