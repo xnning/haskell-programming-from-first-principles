@@ -14,6 +14,6 @@
 - [x] [Folding lists](./notes/folding_lists.md)
 - [x] [Algebraic datatypes](./notes/algebraic_datatypes.md)
 - [x] [Signaling adversity](./notes/signaling_adversity.md)
-- [ ] Building projects
+- [x] [Building projects](./notes/building_projects.md)
 - [ ] Testing
 - [ ] Monoid, Semigroup

@@ -21,6 +21,15 @@ Notes
 - Modules
     - The effect of multiple import declarations is cumulative, but the ordering of import declarations is irrelevant.
 
+Extra
+========================
+
+> import Control.Monad
+> import System.Exit (exitSuccess)
+> import Data.Char (toLower, isLetter)
+> import System.IO
+
+
 Exercises
 ========================
 
@@ -33,3 +42,56 @@ Exercises
     a. Control.Concurrent.MVar; Filesystem.Path.CurrentOS; Control.Concurrent
     b. Filesystem
     c. Control.Monad
+
+**Hangman game logic**
+
+see the code.
+
+**Modifying code**
+
+> -- 2
+> palindrome :: IO ()
+> palindrome = forever $ do
+>   line1 <- getLine
+>   case (line1 == reverse line1) of
+>     True -> putStrLn "It's a palindrome!"
+>     False -> do
+>       putStrLn "Nope!"
+>       exitSuccess
+>
+> -- 3
+> palindrome2 :: IO ()
+> palindrome2 = forever $ do
+>   line1 <- getLine
+>   let line2 = map toLower . filter isLetter $ line1
+>   case (line2 == reverse line2) of
+>     True -> putStrLn "It's a palindrome!"
+>     False ->putStrLn "Nope!"
+>
+> -- 4
+> type Name = String
+> type Age = Integer
+> data Person = Person Name Age deriving Show
+> data PersonInvalid = NameEmpty
+>                    | AgeTooLow
+>                    | PersonInvalidUnknown String deriving (Eq, Show)
+>
+> mkPerson :: Name -> Age -> Either PersonInvalid Person
+> mkPerson name age
+>   | name /= "" && age > 0 = Right $ Person name age
+>   | name == "" = Left NameEmpty
+>   | not (age > 0) = Left AgeTooLow
+>   | otherwise = Left $ PersonInvalidUnknown $
+>       "Name was: " ++ show name ++ " Age was: " ++ show age
+>
+> gimmePerson :: IO ()
+> gimmePerson = do
+>  hSetBuffering stdout NoBuffering
+>  putStr "Give me the name:"
+>  name <- getLine
+>  putStr "Give me the age:"
+>  age <- fmap read getLine
+>  let person = mkPerson name age
+>  case person of
+>     Right p -> putStrLn $ "Yay! Successfully got a person: " ++ show p
+>     Left error -> putStrLn $ "Error: " ++ show error
