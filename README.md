@@ -15,5 +15,5 @@
 - [x] [Algebraic datatypes](./notes/algebraic_datatypes.md)
 - [x] [Signaling adversity](./notes/signaling_adversity.md)
 - [x] [Building projects](./notes/building_projects.md)
-- [ ] Testing
+- [x] Testing
 - [ ] Monoid, Semigroup
