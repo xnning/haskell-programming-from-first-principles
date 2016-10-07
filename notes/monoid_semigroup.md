@@ -55,6 +55,19 @@ Notes
     -   associativity: mappend x (mappend y z) = mappend (mappend x y) z
     -   mconcat = foldr mappend mempty
 
+**Semigroup**
+
+-   To get from a Monoid to a Semigroup, we simply no longer furnish nor require an identity; the core operation remains binary and associative.
+
+``` sourceCode
+-- class Semigroup a where
+--   (<>) :: a -> a -> a
+```
+
+-   so only one law: `(a <> b) <> c = a <> (b <> c)`
+
+-   An useful datatype example: non-empty list `data NonEmpty a = a :| [a]`
+
 Extra
 =====
 
