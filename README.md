@@ -17,3 +17,4 @@
 - [x] [Building projects](./notes/building_projects.md)
 - [x] [Testing](./notes/testing.)
 - [x] [Monoid, Semigroup](./notes/monoid_semigroup.md)
+- [x] [Functor](./notes/functor.md)
