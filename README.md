@@ -18,3 +18,4 @@
 - [x] [Testing](./notes/testing.)
 - [x] [Monoid, Semigroup](./notes/monoid_semigroup.md)
 - [x] [Functor](./notes/functor.md)
+- [x] [Applicative](./notes/applicative.md)
