@@ -15,7 +15,7 @@ Notes
 
 -   Applicative is where the function we are applying is also embedded in some structure.
 
-``` sourceCode
+``` haskell
 -- class Functor f => Applicative f where
 --   pure :: a -> f a
 --   (<*>) :: f (a -> b) -> f a -> f b
@@ -23,7 +23,7 @@ Notes
 
 -   Type has Applicative must have Functor.
 
-``` sourceCode
+``` haskell
 -- fmap f x = pure f <*> x
 ```
 
@@ -38,7 +38,7 @@ Notes
 Extra
 =====
 
-``` sourceCode
+``` haskell
 import Data.List (elemIndex)
 import Control.Applicative (liftA2, liftA3)
 ```
@@ -48,7 +48,7 @@ Exercises
 
 **Exercises: Lookups**
 
-``` sourceCode
+``` haskell
 -- 1
 added :: Maybe Integer
 added = fmap (+3) (lookup 3 $ zip [1, 2, 3] [4, 5, 6])
@@ -93,7 +93,7 @@ summed = fmap sum $ (,) <$> x2 <*> y2
 
 **Exercise: Identity Instance**
 
-``` sourceCode
+``` haskell
 newtype Identity a = Identity a
   deriving (Eq, Ord, Show)
 
@@ -107,7 +107,7 @@ instance Applicative Identity where
 
 **Exercise: Constant Instance**
 
-``` sourceCode
+``` haskell
 newtype Constant a b = Constant { getConstant :: a }
   deriving (Eq, Ord, Show)
 
@@ -121,7 +121,7 @@ instance Monoid a => Applicative (Constant a) where
 
 **Exercise: Fixer Upper**
 
-``` sourceCode
+``` haskell
 -- 1
 e1 = const <$> Just "Hello" <*> pure "World"
 
@@ -131,7 +131,7 @@ e2 = (,,,) <$> Just 90 <*> Just 10 <*> Just "Tierness" <*> pure [1, 2, 3]
 
 **List Applicative Exercise**
 
-``` sourceCode
+``` haskell
 data List a = Nil | Cons a (List a) deriving (Eq, Show)
 
 instance Functor List where
@@ -160,7 +160,7 @@ instance Applicative List where
 
 **ZipList Applicative Exercise**
 
-``` sourceCode
+``` haskell
 newtype ZipList' a = ZipList' (List a) deriving (Eq, Show)
 
 instance Functor ZipList' where
@@ -186,7 +186,7 @@ instance Monoid a => Monoid (ZipList' a) where
 
 **Exercise: Variations on Either**
 
-``` sourceCode
+``` haskell
 data Sum a b = First a | Second b deriving (Eq, Show)
 
 data Validation e a = Error e | Success a deriving (Eq, Show)
@@ -232,7 +232,7 @@ Chapter Exercises
     -   pure :: a -&gt; (e -&gt; a)
     -   (&lt;\*&gt;) :: (e -&gt; (a -&gt; b)) -&gt; (e -&gt; a) -&gt; (e -&gt; b)
 
-``` sourceCode
+``` haskell
 -- 1: already written before
 
 -- 2
@@ -298,7 +298,7 @@ instance (Monoid a) => Applicative (Four' a) where
 
 **Combinations**
 
-``` sourceCode
+``` haskell
 stops :: String
 stops = "pbtdkg"
 

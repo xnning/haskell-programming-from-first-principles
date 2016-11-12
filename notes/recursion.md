@@ -10,7 +10,7 @@ Recursion
 Exercises
 =========
 
-``` sourceCode
+``` haskell
 -- extra import used in exercises
 import Data.List (intersperse)
 ```
@@ -32,7 +32,7 @@ import Data.List (intersperse)
 
 **Recursion**
 
-``` sourceCode
+``` haskell
 -- 1. (15, 2, 0), (13, 2, 1), (11, 2, 2), (9, 2, 3), (7, 2, 4), (5, 2, 5), (3, 2, 6), (1, 2, 7)
 
 -- 2.
@@ -49,7 +49,7 @@ mulRec n m = go n m 0
 
 **Fixing dividedBy**
 
-``` sourceCode
+``` haskell
 data DividedResult =
     Result Integer
   | DividedByZero deriving Show
@@ -66,7 +66,7 @@ dividedBy m n = if n == 0 then DividedByZero
 
 **McCarthy 91 function**
 
-``` sourceCode
+``` haskell
 mc91 :: (Num a, Ord a) => a -> a
 mc91 n | n > 100 = n - 10
        | otherwise = mc91 (mc91 (n + 11))
@@ -74,7 +74,7 @@ mc91 n | n > 100 = n - 10
 
 **Numbers into words**
 
-``` sourceCode
+``` haskell
 digitToWord :: Int -> String
 digitToWord n = lst !! n
   where lst = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]

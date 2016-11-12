@@ -23,7 +23,7 @@ Notes
 Extra
 =====
 
-``` sourceCode
+``` haskell
 import Control.Monad
 import System.Exit (exitSuccess)
 import Data.Char (toLower, isLetter)
@@ -49,7 +49,7 @@ see the code.
 
 **Modifying code**
 
-``` sourceCode
+``` haskell
 -- 2
 palindrome :: IO ()
 palindrome = forever $ do

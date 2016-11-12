@@ -15,7 +15,7 @@ Notes
 
 -   A functor is a way to apply a function over or around some structure that we don’t want to alter.
 
-``` sourceCode
+``` haskell
 -- class Functor f where
 --   fmap :: (a -> b) -> f a -> f b
 ```
@@ -28,7 +28,7 @@ Notes
 Extra
 =====
 
-``` sourceCode
+``` haskell
 {-# LANGUAGE FlexibleInstances #-}
 ```
 
@@ -48,7 +48,7 @@ Exercises
 3.  `c = (*2) . (\x -> x - 2)`
 4.  `((return '1' ++) . show) . (\x -> [x, 1..3])`
 
-``` sourceCode
+``` haskell
 -- 5
 e :: IO Integer
 e = let ioi = readIO "1" :: IO Integer
@@ -58,7 +58,7 @@ e = let ioi = readIO "1" :: IO Integer
 
 **Exercises: Instances of Func**
 
-``` sourceCode
+``` haskell
 -- 1
 newtype Identity a = Identity a
 instance Functor Identity where
@@ -99,7 +99,7 @@ instance Functor (Four' a) where
 
 **Exercise: Possibly**
 
-``` sourceCode
+``` haskell
 data Possibly a = LolNope
                 | Yeppers a deriving (Eq, Show)
 
@@ -110,7 +110,7 @@ instance Functor Possibly where
 
 **Short Exercise**
 
-``` sourceCode
+``` haskell
 data Sum a b = First a
              | Second b deriving (Eq, Show)
 instance Functor (Sum a) where
@@ -131,7 +131,7 @@ Determine if a valid Functor can be written for the datatype provided.
 
 Rearrange the arguments to the type constructor of the datatype so the Functor instance works.
 
-``` sourceCode
+``` haskell
 -- 1
 data Sum' a b = First' b
              | Second' a
@@ -156,7 +156,7 @@ instance Functor (More x) where
 
 Write Functor instances for the following datatypes.
 
-``` sourceCode
+``` haskell
 -- 1
 data Quant a b = Finance | Desk a | Bloor b
 instance Functor (Quant a) where

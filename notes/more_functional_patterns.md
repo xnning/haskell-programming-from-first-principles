@@ -20,7 +20,7 @@ Exercises
 
 **Let's write code**
 
-``` sourceCode
+``` haskell
 -- 1.
 tensDigit :: Integral a => a -> a
 tensDigit x = d

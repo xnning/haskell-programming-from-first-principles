@@ -21,11 +21,11 @@ Algebraic datatypes
 Extra
 =====
 
-``` sourceCode
+``` haskell
 {-# LANGUAGE FlexibleInstances #-}
 ```
 
-``` sourceCode
+``` haskell
 import Data.List (sortBy, groupBy, findIndex, intercalate, elemIndex, sort, group, maximumBy)
 import Data.Char
 import Data.Ord (comparing)
@@ -48,7 +48,7 @@ Exericses
 
 **Exercises: Vehicles**
 
-``` sourceCode
+``` haskell
 data Price = Price Integer deriving (Eq, Show)
 data Manufacturer = Mini | Mazda | Tata deriving (Eq, Show)
 data Airline = PapuAir | CatapultsR'Us | TakeYourChancesUnited deriving (Eq, Show)
@@ -56,7 +56,7 @@ data Airline = PapuAir | CatapultsR'Us | TakeYourChancesUnited deriving (Eq, Sho
 data Vehicle = Car Manufacturer Price | Plane Airline deriving (Eq, Show)
 ```
 
-``` sourceCode
+``` haskell
 -- 1. Vehicle
 -- 2
 isCar :: Vehicle -> Bool
@@ -95,7 +95,7 @@ getManu (Car m _) = m
 
 **Exercises: Logic Goats**
 
-``` sourceCode
+``` haskell
 class TooMany a where
    tooMany :: a -> Bool
 
@@ -117,7 +117,7 @@ instance (Num a, TooMany a) => TooMany (a, a) where
 
 **Exercises: Jammin**
 
-``` sourceCode
+``` haskell
 data Fruit = Peach | Plum | Apple | Blackberry deriving (Eq, Show, Ord)
 -- 2
 data JamJars = Jam { fruit :: Fruit, jars :: Int} deriving (Eq, Show)
@@ -157,7 +157,7 @@ groupJars = groupBy (\a b -> fruit a == fruit b) . sortJars
 
 **Exercises: How Does Your Garden Grow?**
 
-``` sourceCode
+``` haskell
 type Gardener = String
 data Garden =
    Gardenia Gardener
@@ -168,7 +168,7 @@ data Garden =
 
 **Exercise: Programmers**
 
-``` sourceCode
+``` haskell
 data OperatingSystem = GnuPlusLinux
    | OpenBSDPlusNevermindJustBSDStill | Mac
    | Windows deriving (Eq, Show)
@@ -208,7 +208,7 @@ Yes.
 
 **Binary Tree**
 
-``` sourceCode
+``` haskell
 data BinaryTree a =
       Leaf
     | Node (BinaryTree a) a (BinaryTree a)
@@ -247,7 +247,7 @@ Chapter Exercises
 
 **Ciphers**
 
-``` sourceCode
+``` haskell
 vigenereChar num char = chr (ord 'a' + shift)
    where distance = ord char - ord 'a'
          shift = (distance + num) `mod` 26
@@ -262,7 +262,7 @@ unVigenere str key = zipWith vigenereChar (map num (cycle key)) str
 
 **As-patterns**
 
-``` sourceCode
+``` haskell
 -- 1
 isSubsequenceOf :: (Eq a) => [a] -> [a] -> Bool
 isSubsequenceOf [] _ = True
@@ -278,7 +278,7 @@ capitalizeWords = map f . words
 
 **Language exercises**
 
-``` sourceCode
+``` haskell
 -- 1
 capitalizeWord :: String -> String
 capitalizeWord [] = []
@@ -301,7 +301,7 @@ splitSentences str =
 
 **Phone exercise**
 
-``` sourceCode
+``` haskell
 
 data DaPhone = DaPhone [(Char, String)]
 
@@ -357,7 +357,7 @@ phone = DaPhone [ ('0', "0"), ('1', "1")
 
 **Hutton’s Razor**
 
-``` sourceCode
+``` haskell
 data Expr
     = Lit Integer
     | Add Expr Expr

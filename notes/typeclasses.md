@@ -37,7 +37,7 @@ Exercises
 
 **Does it typecheck?**
 
-``` sourceCode
+``` haskell
 -- 1. No. No instance of Show.
 data Person = Person Bool deriving (Show)
 
@@ -69,7 +69,7 @@ s2 = Sentence "Julie" "loves" "dogs"
 
 **Given a datatype declaration, what can we do?**
 
-``` sourceCode
+``` haskell
 data Rocks = Rocks String deriving (Eq, Show)
 data Yeah = Yeah Bool deriving (Eq, Show)
 data Papu = Papu Rocks Yeah deriving (Eq, Show)
@@ -103,7 +103,7 @@ equalityForall p p' = p == p'
 
 **Type-Kwon-Do Two: Electric Typealoo**
 
-``` sourceCode
+``` haskell
 --1
 chk :: Eq b => (a -> b) -> a -> b -> Bool
 chk f a b = (f a) == b

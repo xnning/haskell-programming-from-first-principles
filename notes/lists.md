@@ -14,7 +14,7 @@ Lists
 Extra Load
 ==========
 
-``` sourceCode
+``` haskell
 import Data.Char
 ```
 
@@ -23,14 +23,14 @@ Exercises
 
 **Exercises: EnumFromTo**
 
-``` sourceCode
+``` haskell
 eft :: (Ord a, Enum a) => a -> a -> [a]
 eft f t = if f > t then []
               else if f == t then [f]
               else f : eft (succ f) t
 ```
 
-``` sourceCode
+``` haskell
 eftBool :: Bool -> Bool -> [Bool]
 eftBool = eft
 
@@ -46,7 +46,7 @@ eftChar = eft
 
 **Exercises: Thy Fearful Symmetry**
 
-``` sourceCode
+``` haskell
 -- 1.
 myWords :: String -> [String]
 myWords [] = []
@@ -101,7 +101,7 @@ myBreak c s = cur : myBreak c rest
 
 **Exercises: Filtering**
 
-``` sourceCode
+``` haskell
 -- 1.
 filterThree = filter (\x -> mod x 3 == 0)
 
@@ -114,7 +114,7 @@ removeArticles ls = [x | x <- words ls, x/="a", x/="an", x/="the"]
 
 **Zipping exercises**
 
-``` sourceCode
+``` haskell
 -- 1.
 myZip [] _ = []
 myZip _ [] = []
@@ -134,7 +134,7 @@ Chapter Exercises
 
 **Data.Char**
 
-``` sourceCode
+``` haskell
 -- 2.
 filterUpper = filter isUpper
 
@@ -143,7 +143,7 @@ capitalizeString [] = []
 capitalizeString (x:xs) = toUpper x : xs
 ```
 
-``` sourceCode
+``` haskell
 -- 4.
 capitalizeStringRec [] = []
 capitalizeStringRec (x:xs) = toUpper x : capitalizeStringRec xs
@@ -153,7 +153,7 @@ capitalizeHead = toUpper. head
 
 **Ciphers**
 
-``` sourceCode
+``` haskell
 caesarChar num char = chr (ord 'a' + shift)
    where distance = ord char - ord 'a'
          shift = (distance + num) `mod` 26
@@ -165,7 +165,7 @@ unCaesar num str = map (caesarChar (26 - (mod num 26))) str
 
 **Writing your own standard functions**
 
-``` sourceCode
+``` haskell
 -- 1
 myOr :: [Bool] -> Bool
 myOr [] = False

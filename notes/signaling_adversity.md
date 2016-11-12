@@ -27,7 +27,7 @@ Notes
 Extra
 =====
 
-``` sourceCode
+``` haskell
 import Data.Maybe (fromMaybe, fromJust)
 ```
 
@@ -41,7 +41,7 @@ Exercises
 
 **String processing**
 
-``` sourceCode
+``` haskell
 -- 1
 notThe :: String -> Maybe String
 notThe s = if s == "the" then Nothing else Just s
@@ -64,7 +64,7 @@ countVowels = toInteger . length . filter (`elem` "aeiou")
 
 **Validate the word**
 
-``` sourceCode
+``` haskell
 newtype Word' =
     Word' String
     deriving (Eq, Show)
@@ -79,7 +79,7 @@ mkWord str = if cs > vs then Nothing else Just (Word' str)
 
 **It’s only Natural**
 
-``` sourceCode
+``` haskell
 data Nat =
      Zero
    | Succ Nat
@@ -97,7 +97,7 @@ integerToNat i | i == 0 = Just Zero
 
 **Small library for Maybe**
 
-``` sourceCode
+``` haskell
 -- 1
 isJust :: Maybe a -> Bool
 isJust Nothing = False
@@ -135,7 +135,7 @@ flipMaybe = foldr f (Just [])
 
 **Small library for Either**
 
-``` sourceCode
+``` haskell
 -- 1
 lefts' :: [Either a b] -> [a]
 lefts' = foldr f []
@@ -169,7 +169,7 @@ eitherMaybe'' f = either' (const Nothing) (Just . f)
 
 **Unfolds**
 
-``` sourceCode
+``` haskell
 -- 1
 myIterate :: (a -> a) -> a -> [a]
 myIterate f a = a : myIterate f (f a)
@@ -188,7 +188,7 @@ betterIterate f x = myUnfoldr (\a -> Just (a, f a)) x
 
 **Finally something other than a list!**
 
-``` sourceCode
+``` haskell
 data BinaryTree a =
       Leaf
     | Node (BinaryTree a) a (BinaryTree a)

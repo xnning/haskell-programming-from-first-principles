@@ -29,7 +29,7 @@ Notes
     -   identity: exists some value such that when we pass it as input to our function, the operation is rendered moot and the other value is returned.
 -   in Haskell, Monoid is the typeclass that generalizes these laws across types.
 
-``` sourceCode
+``` haskell
 -- class Monoid m where
 --   mempty :: m
 --   mappend :: m -> m -> m
@@ -59,7 +59,7 @@ Notes
 
 -   To get from a Monoid to a Semigroup, we simply no longer furnish nor require an identity; the core operation remains binary and associative.
 
-``` sourceCode
+``` haskell
 -- class Semigroup a where
 --   (<>) :: a -> a -> a
 ```
@@ -71,7 +71,7 @@ Notes
 Extra
 =====
 
-``` sourceCode
+``` haskell
 import Data.Monoid
 ```
 
@@ -80,7 +80,7 @@ Exercises
 
 **Exercise: Optional Monoid**
 
-``` sourceCode
+``` haskell
 data Optional a =
     Nada
   | Only a
@@ -95,7 +95,7 @@ instance Monoid a => Monoid (Optional a) where
 
 **Madness**
 
-``` sourceCode
+``` haskell
 type Verb = String
 type Adjective = String
 type Adverb = String

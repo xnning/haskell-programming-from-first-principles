@@ -38,7 +38,7 @@ Exercises
 
 **Exercises: Database Processing**
 
-``` sourceCode
+``` haskell
 import Data.Time
 
 data DatabaseItem = DbString String
@@ -79,7 +79,7 @@ avgDb ls = (fromIntegral (sum nums)) / (fromIntegral (length nums))
 
 **Scans Exercises**
 
-``` sourceCode
+``` haskell
 fibs = 1 : scanl (+) 1 fibs
 
 -- 1
@@ -94,7 +94,7 @@ factorial = scanl (*) 1 [1..]
 
 **Warm-up and review**
 
-``` sourceCode
+``` haskell
 -- 1
 stops  = "pbtdkg"
 vowels = "aeiou"
@@ -113,7 +113,7 @@ seekritFunc x = fromIntegral ws / (fromIntegral wl)
 
 **Rewriting functions using folds**
 
-``` sourceCode
+``` haskell
 -- 1
 myOr :: [Bool] -> Bool
 myOr = foldr (||) False
