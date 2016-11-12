@@ -50,12 +50,12 @@ data Mood = Blah
 
 settleDown x = if x == Woot then Blah else x
 
- -- 3.
- -- - Blah, Woot only.
- -- - Error. Number cannot be tested equal with Mood.
- -- - Error. No instance of Ord.
+-- 3.
+-- - Blah, Woot only.
+-- - Error. Number cannot be tested equal with Mood.
+-- - Error. No instance of Ord.
 
- -- 4. Yes.
+-- 4. Yes.
 
 type Subject = String
 type Verb = String
