@@ -1,4 +1,4 @@
-# Notes for book Haskell Programming
+# Notes and exercises for book [Haskell Programming from first principles](http://haskellbook.com/)
 
 ## Progress
 
