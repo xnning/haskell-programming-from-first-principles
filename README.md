@@ -19,3 +19,4 @@
 - [x] [Monoid, Semigroup](./notes/monoid_semigroup.md)
 - [x] [Functor](./notes/functor.md)
 - [x] [Applicative](./notes/applicative.md)
+- [x] [Monad](./notes/monad.md)
