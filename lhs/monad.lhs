@@ -54,7 +54,7 @@ Notes
 
 - Kleisli composition.
 
-> -- (>>=) :: Monad m => m a -> (a -> m b) -> m b
+> -- (>=>) :: Monad m => (a -> m b) -> (b -> m c) -> a -> m c
 
 Exercises
 ========================

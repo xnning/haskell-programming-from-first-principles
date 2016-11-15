@@ -62,7 +62,7 @@ bind f x = join (fmap f x)
 -   Kleisli composition.
 
 ``` haskell
--- (>>=) :: Monad m => m a -> (a -> m b) -> m b
+-- (>=>) :: Monad m => (a -> m b) -> (b -> m c) -> a -> m c
 ```
 
 Exercises
