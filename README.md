@@ -20,3 +20,4 @@
 - [x] [Functor](./notes/functor.md)
 - [x] [Applicative](./notes/applicative.md)
 - [x] [Monad](./notes/monad.md)
+- [x] [Applying structure](./notes/applying_structure.md)
