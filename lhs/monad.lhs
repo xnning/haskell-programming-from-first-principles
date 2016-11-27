@@ -48,8 +48,8 @@ Notes
 
 - Laws:
     - identity: return should be neutral and not perform any computation.
-        - right identity: `m >> return = m`
-        - left identity: `return x >> f = f x`
+        - right identity: `m >>= return = m`
+        - left identity: `return x >>= f = f x`
     - associativity: `(m >>= f) >>= g = m >>= (\x -> f x >>= g)`
 
 - Kleisli composition.
