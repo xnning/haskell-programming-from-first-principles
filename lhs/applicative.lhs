@@ -283,4 +283,4 @@ Chapter Exercises
 > vowels = "aeiou"
 >
 > combos :: [a] -> [b] -> [c] -> [(a, b, c)]
-> combos = liftA3 (,,) a b c
+> combos = liftA3 (,,)
