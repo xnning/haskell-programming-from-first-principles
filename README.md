@@ -23,3 +23,4 @@
 - [x] [Applying structure](./notes/applying_structure.md)
 - [x] [Foldable](./notes/foldable.md)
 - [x] [Traversable](./notes/traversable.md)
+- [x] [Reader](./notes/reader.md)
