@@ -24,3 +24,4 @@
 - [x] [Foldable](./notes/foldable.md)
 - [x] [Traversable](./notes/traversable.md)
 - [x] [Reader](./notes/reader.md)
+- [x] [State](./notes/state.md)
