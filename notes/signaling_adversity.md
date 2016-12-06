@@ -1,8 +1,8 @@
 Signaling adversity
--------------------
+===================
 
 Contents
-========
+--------
 
 -   `Nothing`, or `Just` `Maybe`.
 -   `Either` left or right, but not both
@@ -10,7 +10,7 @@ Contents
 -   anamorphisms, but not animorphs
 
 Notes
-=====
+-----
 
 -   In `Either`, `Left` is used as invalid or error constructor.
 
@@ -25,14 +25,14 @@ Notes
 -   Newtypes are a special case in that they are kind \*, but are unlifted because their representation is identical to that of the type they contain, so the newtype itself is not creating any new pointer beyond that of the type it contains.
 
 Extra
-=====
+-----
 
 ``` haskell
 import Data.Maybe (fromMaybe, fromJust)
 ```
 
 Exercises
-=========
+---------
 
 **Determine the kinds**
 

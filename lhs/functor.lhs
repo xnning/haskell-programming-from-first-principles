@@ -1,8 +1,8 @@
 Functor
-------------------------
+========================
 
 Contents
-========================
+------------------------
 
 - the return of the higher-kind types
 - fmaps galore, and not just on lists
@@ -11,7 +11,7 @@ Contents
 - puns based on George Clinton music, probably
 
 Notes
-========================
+------------------------
 
 - A functor is a way to apply a function over or around some structure that we don’t want to alter.
 
@@ -25,12 +25,12 @@ Notes
 - Unlike Monoid, Functor instances will be unique for a datatype, in part because of parametricity, in part because arguments to type constructors are applied in order of definition. In a hypothetical not-Haskell language, other cases might be possible.
 
 Extra
-========================
+------------------------
 
 > {-# LANGUAGE FlexibleInstances #-}
 
 Exercises
-========================
+------------------------
 
 **Exercises: Be Kind**
 
@@ -108,7 +108,7 @@ Exercises
 >   fmap f (Second b) = Second (f b)
 
 Chapter Exercises
-========================
+------------------------
 
 Determine if a valid Functor can be written for the datatype provided.
 

@@ -1,8 +1,8 @@
 Applicative
-------------------------
+========================
 
 Contents
-========================
+------------------------
 
 - define and explore the Applicative typeclass and its core operations
 - demonstrate why applicatives are monoidal functors
@@ -11,7 +11,7 @@ Contents
 - give you some Validation
 
 Notes
-========================
+------------------------
 
 - Applicative is where the function we are applying is also embedded in some structure.
 
@@ -34,13 +34,13 @@ Notes
 
 
 Extra
-========================
+------------------------
 
 > import Data.List (elemIndex)
 > import Control.Applicative (liftA2, liftA3)
 
 Exercises
-========================
+------------------------
 
 **Exercises: Lookups**
 
@@ -196,7 +196,7 @@ Exercises
 >   (<*>) (Success f) (Success e) = Success (f e)
 
 Chapter Exercises
-========================
+------------------------
 
 1. []
     - pure :: a -> [a]

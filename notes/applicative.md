@@ -1,8 +1,8 @@
 Applicative
------------
+===========
 
 Contents
-========
+--------
 
 -   define and explore the Applicative typeclass and its core operations
 -   demonstrate why applicatives are monoidal functors
@@ -11,7 +11,7 @@ Contents
 -   give you some Validation
 
 Notes
-=====
+-----
 
 -   Applicative is where the function we are applying is also embedded in some structure.
 
@@ -36,7 +36,7 @@ Notes
     -   Interchange:: `u <*> pure y = pure ($ y) <*> u`
 
 Extra
-=====
+-----
 
 ``` haskell
 import Data.List (elemIndex)
@@ -44,7 +44,7 @@ import Control.Applicative (liftA2, liftA3)
 ```
 
 Exercises
-=========
+---------
 
 **Exercises: Lookups**
 
@@ -214,7 +214,7 @@ instance Monoid e => Applicative (Validation e) where
 ```
 
 Chapter Exercises
-=================
+-----------------
 
 1.  \[\]
     -   pure :: a -&gt; \[a\]

@@ -1,5 +1,5 @@
 More functional patterns
--------------------------
+========================
 
 - use GHCi's `:browse` to see a list of the type signatures and functions we loaded from the module.
 
@@ -8,7 +8,7 @@ More functional patterns
 - Pointfree refers to a style of composing functions without specifying their arguments.
 
 Exercises
-========================
+-------------------------
 
 **Multiple choice**
 

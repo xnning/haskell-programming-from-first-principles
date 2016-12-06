@@ -1,8 +1,8 @@
 Bulding projects
-------------------------
+========================
 
 Contents
-========================
+------------------------
 
 - writing Haskell programs with modules
 - using the Cabal package manager
@@ -11,7 +11,7 @@ Contents
 - building a small interactive game
 
 Notes
-========================
+------------------------
 
 - The Haskell Cabal, or Common Architecture for Building Applications and Libraries, is a package manager.
 
@@ -22,7 +22,7 @@ Notes
     - The effect of multiple import declarations is cumulative, but the ordering of import declarations is irrelevant.
 
 Extra
-========================
+------------------------
 
 > import Control.Monad
 > import System.Exit (exitSuccess)
@@ -31,7 +31,7 @@ Extra
 
 
 Exercises
-========================
+------------------------
 
 **Intermission: Check your understanding**
 

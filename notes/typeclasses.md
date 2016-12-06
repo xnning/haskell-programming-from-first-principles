@@ -1,5 +1,5 @@
 Typeclasses
------------
+===========
 
 -   Typeclasses and types in Haskell are, in a sense, opposites: where a declaration of a type defines how that type in particular is created, a declaration of a typeclass defines how a set of types are consumed or used in computations.
 
@@ -25,7 +25,7 @@ Typeclasses
 -   If we turn all warnings on with the `Wall` flag in our REPL or in our build configuration, then GHC will let us know when we’re not handling all cases: `:set -Wall`
 
 Exercises
-=========
+---------
 
 **Multiple choice**
 

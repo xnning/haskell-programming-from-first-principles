@@ -1,8 +1,8 @@
 Monoid, Semigroup
------------------
+=================
 
 Contents
-========
+--------
 
 -   Algebras
 -   Laws
@@ -10,7 +10,7 @@ Contents
 -   Semigroups
 
 Notes
-=====
+-----
 
 **Algebra**
 
@@ -69,14 +69,14 @@ Notes
 -   An useful datatype example: non-empty list `data NonEmpty a = a :| [a]`
 
 Extra
-=====
+-----
 
 ``` haskell
 import Data.Monoid
 ```
 
 Exercises
-=========
+---------
 
 **Exercise: Optional Monoid**
 

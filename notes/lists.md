@@ -1,5 +1,5 @@
 Lists
------
+=====
 
 -   Evaluation of the list in this representation proceeds down the spine. Constructing the list when that is necessary, however, proceeds up the spine.
 
@@ -12,14 +12,14 @@ Lists
     -   weak head normal form: the expression is only evaluated as far as is necessary to reach a data constructor.
 
 Extra Load
-==========
+----------
 
 ``` haskell
 import Data.Char
 ```
 
 Exercises
-=========
+---------
 
 **Exercises: EnumFromTo**
 
@@ -130,7 +130,7 @@ myZip2 = myZipWith (\x y -> (x, y))
 ```
 
 Chapter Exercises
-=================
+-----------------
 
 **Data.Char**
 

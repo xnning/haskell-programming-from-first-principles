@@ -1,8 +1,8 @@
 State
-------------------------
+========================
 
 Contents
-========================
+------------------------
 
 - talk about what state means
 - explore some ways of handling state in Haskell
@@ -10,13 +10,13 @@ Contents
 - and examine the State newtype and Monad instance
 
 Extras
-========================
+------------------------
 
 > {-# LANGUAGE InstanceSigs #-}
 > import System.Random
 
 Notes
-========================
+------------------------
 
 - State
 
@@ -51,7 +51,7 @@ Notes
 >
 
 Exercises
-========================
+------------------------
 
 **Exercises: Roll Your Own**
 
@@ -109,7 +109,7 @@ Exercises
 >                         | otherwise  = go from (to - 1) (fizzBuzz to : strs)
 
 Chapter Exercises
-========================
+------------------------
 
 > get :: State s s
 > get = State $ \s -> (s, s)

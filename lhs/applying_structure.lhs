@@ -1,13 +1,13 @@
 Applying Structure
-------------------------
+========================
 
 Contents
-========================
+------------------------
 
 - Examples how Monoid, Functor, Applicative and Monod are used in real world.
 
 Notes
-========================
+------------------------
 
 - interesting example for Appicative
 

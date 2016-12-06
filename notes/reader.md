@@ -1,15 +1,15 @@
 Reader
-------
+======
 
 Contents
-========
+--------
 
 -   examine the Functor, Applicative, and Monad instances for functions
 -   learn about the Reader newtype
 -   see some examples of using Reader
 
 Extra
-=====
+-----
 
 ``` haskell
 {-# LANGUAGE InstanceSigs #-}
@@ -20,7 +20,7 @@ import Data.Maybe
 ```
 
 Notes
-=====
+-----
 
 -   Functions have Functor, Applicative, Monad instances. The term Reader refers to the Applicative or Monad instances: reading an argument from the environment into functions.
 
@@ -32,7 +32,7 @@ newtype Reader r a =
 -   The "read-only" nature of the type argument r means that you can swap in a different type or value of r for functions that you call, but not for functions that call you.
 
 Exercises
-=========
+---------
 
 **Short Exercise: Warming Up**
 
@@ -118,7 +118,7 @@ getDogRM = Reader $ liftM2 Dog dogName address
 ```
 
 Chapter Exercises
-=================
+-----------------
 
 **A warm-up stretch**
 

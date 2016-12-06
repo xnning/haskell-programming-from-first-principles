@@ -1,5 +1,5 @@
 Recursion
----------
+=========
 
 -   We use a combinator - known as the Y combinator or fixed-point combinator - to write recursive functions in the lambda calculus.
 
@@ -8,7 +8,7 @@ Recursion
 -   A common Haskell idiom called a `go` function, which allows us to define a function via a where-clause that can accept more arguments than the top-level function does.
 
 Exercises
-=========
+---------
 
 ``` haskell
 -- extra import used in exercises

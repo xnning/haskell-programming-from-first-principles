@@ -1,5 +1,5 @@
 Folding lists
--------------------------
+========================
 
 - One initially non-obvious aspect of folding is that it happens in two stages, traversal and folding.
     - traversal is the stage in which the fold recurses over the spine.
@@ -19,7 +19,7 @@ Folding lists
 
 
 Exercises
-=========================
+------------------------
 
 **Exercises: Undertanding Folds**
 

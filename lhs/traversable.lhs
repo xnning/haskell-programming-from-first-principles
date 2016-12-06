@@ -1,8 +1,8 @@
 Foldable
-------------------------
+========================
 
 Contents
-========================
+------------------------
 
 - explain the Traversable typeclass and its canonical functions
 - explore examples of Traversable in practical use
@@ -10,7 +10,7 @@ Contents
 - and, of course, write some Traversable instances
 
 Notes
-========================
+------------------------
 
 - Traversable depends on Applicative, and thus Functor, and is also superclassed by Foldable.
 
@@ -33,7 +33,7 @@ Notes
     - Composition: `traverse (Compose . fmap g . f) = Compose . fmap (traverse g) . traverse f`
 
 Chapter Exercises
-========================
+------------------------
 
 > -- Identity
 > newtype Identity a = Identity a deriving (Eq, Ord, Show)

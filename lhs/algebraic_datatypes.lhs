@@ -1,5 +1,5 @@
 Algebraic datatypes
--------------------------
+========================
 
 - Algebraic datatypes in Haskell are algebraic because we can describe the patterns of argument structures using two basic operations: sum and product.
 
@@ -21,7 +21,7 @@ Algebraic datatypes
 - Whenever we have a product that uses record accessors, keep it separate of any sum type that is wrapping it. To do this, split out the product into an independent type with its own type constructor.
 
 Extra
-=========================
+-------------------------
 
 > {-# LANGUAGE FlexibleInstances #-}
 
@@ -30,7 +30,7 @@ Extra
 > import Data.Ord (comparing)
 
 Exericses
-=========================
+-------------------------
 
 **Exercises: Dog Types**
 
@@ -220,7 +220,7 @@ Yes.
 > foldTree f v (Node left a right) = foldTree f (f a (foldTree f v left)) right
 
 Chapter Exercises
-=========================
+------------------------
 
 **Multiple choice**
 

@@ -1,8 +1,8 @@
 Monad
-------------------------
+========================
 
 Contents
-========================
+------------------------
 
 - define Monad, its operations and laws
 - look at several examples of monads in practice
@@ -10,12 +10,12 @@ Contents
 - address some misinformation about monads
 
 Extra
-========================
+------------------------
 
 > import Control.Monad (join)
 
 Notes
-========================
+------------------------
 
 - A Monad is an applicative functor. Monad is stronger than Applicative, and Applicative is stronger than Functor.
 
@@ -57,7 +57,7 @@ Notes
 > -- (>=>) :: Monad m => (a -> m b) -> (b -> m c) -> a -> m c
 
 Exercises
-========================
+------------------------
 
 **Short Exercise: Either Monad**
 
@@ -82,7 +82,7 @@ Exercises
 >   (>>=) (Second n) f = f n
 
 Chapter Exercises
-========================
+------------------------
 
 > -- 1
 > data Nope a = NopeDotJpg

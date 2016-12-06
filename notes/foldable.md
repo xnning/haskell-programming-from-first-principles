@@ -1,15 +1,15 @@
 Foldable
---------
+========
 
 Contents
-========
+--------
 
 -   the Foldable class and its operations
 -   the monoidal nature of folding
 -   standard operations derived from folding
 
 Extras
-======
+------
 
 ``` haskell
 import Data.Foldable
@@ -17,7 +17,7 @@ import Data.Monoid
 ```
 
 Notes
-=====
+-----
 
 -   the foldable class: class of data structures that can be folded to a summary value.
 
@@ -36,7 +36,7 @@ class Foldable' t where
 ```
 
 Exercises
-=========
+---------
 
 **Exercises: Library Functions**
 
@@ -80,7 +80,7 @@ foldMap'' f = foldr (mappend . f) mempty
 ```
 
 Chapter Exercises
-=================
+-----------------
 
 ``` haskell
 data Constant a b = Constant a

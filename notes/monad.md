@@ -1,8 +1,8 @@
 Monad
------
+=====
 
 Contents
-========
+--------
 
 -   define Monad, its operations and laws
 -   look at several examples of monads in practice
@@ -10,14 +10,14 @@ Contents
 -   address some misinformation about monads
 
 Extra
-=====
+-----
 
 ``` haskell
 import Control.Monad (join)
 ```
 
 Notes
-=====
+-----
 
 -   A Monad is an applicative functor. Monad is stronger than Applicative, and Applicative is stronger than Functor.
 
@@ -66,7 +66,7 @@ bind f x = join (fmap f x)
 ```
 
 Exercises
-=========
+---------
 
 **Short Exercise: Either Monad**
 
@@ -93,7 +93,7 @@ instance Monad (Sum a) where
 ```
 
 Chapter Exercises
-=================
+-----------------
 
 ``` haskell
 -- 1
