@@ -1,4 +1,4 @@
-Foldable
+Traversable
 ========================
 
 Contents

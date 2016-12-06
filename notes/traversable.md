@@ -1,5 +1,5 @@
-Foldable
-========
+Traversable
+===========
 
 Contents
 --------
