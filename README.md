@@ -1,4 +1,8 @@
-# Notes and exercises for book [Haskell Programming from first principles](http://haskellbook.com/)
+# Haskell Programming from first principles
+
+## Desctription
+
+Notes and exercises for book [Haskell Programming from first principles](http://haskellbook.com/)
 
 ## Progress
 
