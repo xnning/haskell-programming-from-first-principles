@@ -29,4 +29,5 @@ Notes and exercises for book [Haskell Programming from first principles](http://
 - [x] [Traversable](./notes/traversable.md)
 - [x] [Reader](./notes/reader.md)
 - [x] [State](./notes/state.md)
-- [ ] [Parser Combinators](./notes/parser_combinators.md)
+- [ ] [Parser combinators](./notes/parser_combinators.md)
+- [x] [Composing types](./notes/composing_types.md)
