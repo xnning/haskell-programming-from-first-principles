@@ -31,3 +31,4 @@ Notes and exercises for book [Haskell Programming from first principles](http://
 - [x] [State](./notes/state.md)
 - [ ] [Parser combinators](./notes/parser_combinators.md)
 - [x] [Composing types](./notes/composing_types.md)
+- [ ] [Monad transformers](./notes/monad_transformers.md)
