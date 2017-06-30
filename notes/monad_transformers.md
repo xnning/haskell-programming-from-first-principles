@@ -72,7 +72,54 @@ eitherT :: Monad m =>
         -> (b -> m c)
         -> EitherT a m b
         -> m c
-eitherT f g (EitherT m) = join $ do
+eitherT f g (EitherT m) = do
   v <- m
-  return $ either f g v
+  either f g v
+```
+
+-   ReaderT: monad transformer for Reader
+
+``` haskell
+newtype ReaderT r m a = ReaderT { runReaderT :: r -> m a }
+
+instance (Functor m) => Functor (ReaderT r m) where
+  fmap f (ReaderT g) = ReaderT $ fmap (fmap f) g
+
+instance (Applicative m) => Applicative (ReaderT r m) where
+  pure a = ReaderT . pure . pure $ a
+  (ReaderT f) <*> (ReaderT g) = ReaderT $ liftA2 (<*>) f g
+
+instance (Monad m) => Monad (ReaderT r m) where
+  return = pure
+  (ReaderT f) >>= g = ReaderT $ \r -> do
+    a <- f r
+    runReaderT (g a) r
+```
+
+-   StateT : monad transformer for State
+
+``` haskell
+newtype StateT s m a = StateT { runStateT :: s -> m (a, s) }
+
+instance (Functor m) => Functor (StateT s m) where
+  fmap f (StateT m) = StateT $ fmap (fmap g) m
+    where g (a, s) = (f a, s)
+
+instance (Monad m) => Applicative (StateT s m) where
+  pure a = StateT $ \s -> pure (a, s)
+  (StateT f) <*> (StateT a) = StateT $ \s -> do
+    (mf, s1) <- f s
+    (ma, s2) <- a s1
+    return (mf ma, s2)
+
+instance (Monad m) => Monad (StateT s m) where
+  return = pure
+  (StateT a) >>= f = StateT $ \s -> do
+    (ma, s1) <- a s
+    runStateT (f ma) s1
+
+
+
+
+
 ```
