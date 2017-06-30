@@ -67,9 +67,9 @@ Notes
 >         -> (b -> m c)
 >         -> EitherT a m b
 >         -> m c
-> eitherT f g (EitherT m) = join $ do
+> eitherT f g (EitherT m) = do
 >   v <- m
->   return $ either f g v
+>   either f g v
 
 - ReaderT: monad transformer for Reader
 
