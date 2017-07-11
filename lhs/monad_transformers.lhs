@@ -12,7 +12,8 @@ Extra
 ------------------------
 
 > import Control.Applicative (liftA2)
-> import Control.Monad (join)
+> import Control.Monad (join, liftM)
+> import Control.Monad.Trans.Except
 
 Notes
 ------------------------
@@ -109,8 +110,71 @@ Notes
 >     (ma, s1) <- a s
 >     runStateT (f ma) s1
 >
+> -- correspondence between StateT and Parser
 >
+> type Parser a = String -> Maybe (a, String)
+> -- which is equivalent to
+> type Parser' = StateT String Maybe
+
+- Don't use `Writer` or `WriterT`: Writer can accumulate unevaluated thunks,
+  causing memory leaks. It's also inappropriate for logging long-running or
+  ongoing programs due to the fact that you can't retrieve any of the logged
+  values until the computation is complete.
+
+- Don't use `ListT`.
+
+- If you have a transformer variant of a type and want to use it as if it was
+  the non-transformer version, you need some structure that doesn’t really do
+  anything: Identity.
+
+> -- type Maybe a = MaybeT Identity a
+> -- type Either e a = EitherT e Identity a
+> -- type Reader r a = ReaderT e Identity a
+> -- type State s a = StateT s Identity a
+
+In general, don’t use hand-rolled versions of these transformer types without
+good reason.
+
+- Lexically inner is structurally outer: the additional structure m is always
+  wrapped around our value. Also note it's only wrapped around things we can
+  have, not things we need.
+
+- MonadTrans is a typeclass with one core method: lift. lifting means you're
+embedding an expression in a larger context by adding structure that doesn’t do
+anything.
+
+> class MonadTrans t where
+>   -- | Lift a computation from the argument monad
+>   --   to the constructed monad.
+>   lift :: (Monad m) => m a -> t m a
 >
+> -- instances
 >
+> -- instance MonadTrans IdentityT where
+> --   lift = IdentityT
 >
+> instance MonadTrans MaybeT where
+>   lift = MaybeT. liftM Just
 >
+> instance MonadTrans (ReaderT r) where
+>   lift = ReaderT . const
+
+
+
+Exercises
+------------------------
+
+**Exercise: Wrap It Up**
+
+> embedded :: MaybeT (ExceptT String (ReaderT () IO)) Int
+> embedded =  MaybeT. ExceptT. ReaderT . (\x y -> return $ x y) $ (const (Right (Just 1)))
+
+**Exercises: Lift More**
+
+> instance MonadTrans (EitherT e) where
+>   lift = EitherT . liftM Right
+>
+> instance MonadTrans (StateT s) where
+>   lift m = StateT $ \s -> do
+>     a <- m
+>     return (a, s)
