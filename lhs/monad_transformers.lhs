@@ -11,9 +11,35 @@ Contents
 Extra
 ------------------------
 
+> {-# LANGUAGE InstanceSigs #-}
 > import Control.Applicative (liftA2)
 > import Control.Monad (join, liftM)
 > import Control.Monad.Trans.Except
+> import Control.Monad.Identity
+
+> newtype Reader r a =
+>     Reader { runReader :: r -> a }
+>
+> instance Functor (Reader r) where
+>   fmap ab (Reader ra) = Reader $ ab . ra
+>
+> instance Applicative (Reader r) where
+>   pure :: a -> Reader r a
+>   pure a = Reader $ const a
+>
+>   (<*>) :: Reader r (a -> b)
+>         -> Reader r a
+>         -> Reader r b
+>   (Reader rab) <*> (Reader ra) =
+>     Reader $ \r -> rab r (ra r)
+>
+> instance Monad (Reader r) where
+>   return = pure
+>
+>   (>>=) :: Reader r a
+>         -> (a -> Reader r b)
+>         -> Reader r b
+>   (>>=) (Reader ra) f = Reader $ \r -> ((runReader . f) . ra) r r
 
 Notes
 ------------------------
@@ -127,10 +153,10 @@ Notes
   the non-transformer version, you need some structure that doesn’t really do
   anything: Identity.
 
-> -- type Maybe a = MaybeT Identity a
-> -- type Either e a = EitherT e Identity a
-> -- type Reader r a = ReaderT e Identity a
-> -- type State s a = StateT s Identity a
+> type Maybe' a = MaybeT Identity a
+> type Either' e a = EitherT e Identity a
+> type Reader' r a = ReaderT r Identity a
+> type State' s a = StateT s Identity a
 
 In general, don’t use hand-rolled versions of these transformer types without
 good reason.
@@ -159,7 +185,19 @@ anything.
 > instance MonadTrans (ReaderT r) where
 >   lift = ReaderT . const
 
+- The `MonadIO` class has `liftIO`, which keeps lifting your IO action until it
+  is lifted over all structure embedded in the outermost IO type.
 
+> class (Monad m) => MonadIO m where
+> -- | Lift a computation from the 'IO' monad.
+>   liftIO :: IO a -> m a
+>
+> -- examples
+> -- instance (MonadIO m) => MonadIO (IdentityT m) where
+> --   liftIO = IdentityT . liftIO
+>
+> instance (MonadIO m) => MonadIO (EitherT e m) where
+>   liftIO = lift . liftIO
 
 Exercises
 ------------------------
@@ -178,3 +216,35 @@ Exercises
 >   lift m = StateT $ \s -> do
 >     a <- m
 >     return (a, s)
+
+**Exercises: Some Instances**
+
+> instance (MonadIO m) => MonadIO (MaybeT m) where
+>   liftIO = lift . liftIO
+>
+> instance (MonadIO m) => MonadIO (ReaderT r m) where
+>   liftIO = lift . liftIO
+>
+> instance (MonadIO m) => MonadIO (StateT s m) where
+>   liftIO = lift . liftIO
+
+Chapter Exercises
+------------------------
+
+**Write the code**
+
+> rDec :: Num a => Reader a a
+> rDec = Reader (subtract 1)
+>
+> rShow :: Show a => ReaderT a Identity String
+> rShow = ReaderT (Identity . show)
+>
+> rPrintAndInc :: (Num a, Show a) => ReaderT a IO a
+> rPrintAndInc = ReaderT $ \a -> do
+>   putStrLn $ "Hi: " ++ show a
+>   return a
+>
+> sPrintIncAccum :: (Num a, Show a) => StateT a IO String
+> sPrintIncAccum = StateT $ \a -> do
+>   putStrLn $ "Hi: " ++ show a
+>   return (show a, a + 1)
