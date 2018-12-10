@@ -95,15 +95,15 @@ Notes
   particularly common in numerics code when there are lots of Int and Double
   values around which are individually cheaper to conjure.
     + `seq`
-
-> manualSeq :: Bool -> Int
-> manualSeq b = b `seq` 1
-
+    ```haskell
+    manualSeq :: Bool -> Int
+    manualSeq b = b `seq` 1
+    ```
     + bang-patterns
-
-> banging :: Bool -> Int
-> banging !b = 1
-
+    ```haskell
+    banging :: Bool -> Int
+    banging !b = 1
+    ```
     + Strict and StrictData pragmas.
 
 Chapter Exercises
@@ -139,7 +139,7 @@ x = _
 
 **Will printing this expression result in bottom?**
 
-```
+```haskell
 snd (undefined, 1)
 NO.
 

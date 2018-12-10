@@ -106,19 +106,19 @@ lazyPattern ~(a, b) = const "Cousin it" a
     conjure.
     -   `seq`
 
-``` haskell
-manualSeq :: Bool -> Int
-manualSeq b = b `seq` 1
-```
+    ``` haskell
+    manualSeq :: Bool -> Int
+    manualSeq b = b `seq` 1
+    ```
 
-    + bang-patterns
+    -   bang-patterns
 
-``` haskell
-banging :: Bool -> Int
-banging !b = 1
-```
+    ``` haskell
+    banging :: Bool -> Int
+    banging !b = 1
+    ```
 
-    + Strict and StrictData pragmas.
+    -   Strict and StrictData pragmas.
 
 Chapter Exercises
 -----------------
@@ -153,24 +153,26 @@ x = _
 
 **Will printing this expression result in bottom?**
 
-    snd (undefined, 1)
-    NO.
+``` haskell
+snd (undefined, 1)
+NO.
 
-    let x = undefined
-    let y = x `seq` in snd (x, y)
-    YES.
+let x = undefined
+let y = x `seq` in snd (x, y)
+YES.
 
-    length $ [1..5] ++ undefined
-    YES.
+length $ [1..5] ++ undefined
+YES.
 
-    length $ [1..5] ++ [undefined]
-    NO.
+length $ [1..5] ++ [undefined]
+NO.
 
-    const 1 undefined
-    NO.
+const 1 undefined
+NO.
 
-    const 1 (undefined `seq` 1)
-    NO.
+const 1 (undefined `seq` 1)
+NO.
 
-    const undefined 1
-    YES.
+const undefined 1
+YES.
+```
