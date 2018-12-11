@@ -1,5 +1,5 @@
 FORMATIN=-f markdown+lhs
-FORMATOUT=-t markdown_github
+FORMATOUT=-t gfm
 
 OBJ=$(addprefix notes/, $(patsubst %.lhs, %.md, $(notdir $(wildcard lhs/*.lhs))))
 
