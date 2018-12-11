@@ -1,22 +1,21 @@
-Basic libraries
-===============
+# Basic libraries
 
-Contents
---------
+## Contents
 
--   demonstrate how to measure the usage of time and space in your
+  - demonstrate how to measure the usage of time and space in your
     programs
--   offer guidelines on when weak head normal form or normal form are
+  - offer guidelines on when weak head normal form or normal form are
     appropriate when benchmarking code
--   define constant applicative forms and explain argument saturation
--   demonstrate and critically evaluate when to use different data
+  - define constant applicative forms and explain argument saturation
+  - demonstrate and critically evaluate when to use different data
     structures in different circumstances
--   sacrifice some jargons for the jargon gods
+  - sacrifice some jargons for the jargon gods
 
-Notes
------
+## Notes
 
--   Benchmarking with `criterion`:
+  - Benchmarking with `criterion`:
+
+<!-- end list -->
 
 ``` haskell
 module Main where
@@ -51,7 +50,9 @@ whnf :: (a -> b) -> a -> Benchmarkable
 nf :: Control.DeepSeq.NFData b => (a -> b) -> a -> Benchmarkable
 ```
 
--   Interestingly, a more efficient implementation of `!!`
+  - Interestingly, a more efficient implementation of `!!`
+
+<!-- end list -->
 
 ``` haskell
 xs !! n
