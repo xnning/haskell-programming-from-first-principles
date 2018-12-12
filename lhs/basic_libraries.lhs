@@ -58,3 +58,33 @@ xs !! n
                          0 -> x
                          _ -> r (k - 1)) tooLarge xs n
 ```
+
+- Profiling
+    + `-prof` enables profiling. Used alone, it will require you to annotate "cost centers" manually.
+    + `-fprof-auto` assigns all bindings not marked inline a cost center named after the binding.
+    + `rtsopts` enables you to pass GHC RTS options to the generated library.
+    This is optional so you can get a smaller binary if desired. We need this to
+    tell our program to dump the profile to the .prof file named a er our
+    program.
+    + `-O2` enables the highest level of program optimizations.
+
+```bash
+stack ghc -- -prof -fprof-auto -rtsopts -O2 tmp.hs
+
+./tmp +RTS -P
+
+cat tmp.prof
+
+# profiling heap usage
+./tmp +RTS -hc -p
+hp2ps tmp.hp
+```
+
+- `CAF`: constant applicative forms. CAFs are expressions that have no free
+  variables and are held in memory to be shared with all other expressions in a
+  module. CAFs can make some programs faster since you don't have to keep
+  re-evaluating shared values; but they can become memory-intensive quite
+  quickly.
+    + values
+    + partially applied functions with named arguments
+    + fully appied functions
