@@ -64,7 +64,7 @@ xs !! n
     + `-fprof-auto` assigns all bindings not marked inline a cost center named after the binding.
     + `rtsopts` enables you to pass GHC RTS options to the generated library.
     This is optional so you can get a smaller binary if desired. We need this to
-    tell our program to dump the profile to the .prof file named a er our
+    tell our program to dump the profile to the .prof file named after our
     program.
     + `-O2` enables the highest level of program optimizations.
 
@@ -88,3 +88,24 @@ hp2ps tmp.hp
     + values
     + partially applied functions with named arguments
     + fully appied functions
+
+- Use Map when you have keys and values instead of assciation lists. Using an
+  Int as your key type is usually a sign you'd be better off with a HashMap,
+  IntMap, or Vector.
+
+- Updates (cons and append) to both ends of the data structure and concatenation
+ are what Sequence is particularly known for.
+
+- There are many variants of Vector. These include boxed, unboxed, immutable,
+  mutable, and storable vectors. The default Vector type is implemented as a
+  slice wrapper of Array. Thus slicing is quite cheap. You want a vector when
+    + you need memory efficiency close to the theoretical maximum for the data
+    you are working with
+    + your data access is almost exclusively in terms of indexing via an Int
+    value
+    + you want uniform access times for accessing each element in the data
+    structure
+    + you will construct a Vector once and read it many time; or ou plan to use
+    a mutable vector for efficient update
+
+
