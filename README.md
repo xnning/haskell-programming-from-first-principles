@@ -33,4 +33,4 @@ Notes and exercises for book [Haskell Programming from first principles](http://
 - [x] [Composing types](./notes/composing_types.md)
 - [ ] [Monad transformers](./notes/monad_transformers.md)
 - [x] [Non-strictness](./notes/non-strictness.md)
-- [ ] [Basic libraries](./notes/basic_libraries.md)
+- [x] [Basic libraries](./notes/basic_libraries.md)

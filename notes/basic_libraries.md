@@ -71,7 +71,7 @@ xs !! n
       - `rtsopts` enables you to pass GHC RTS options to the generated
         library. This is optional so you can get a smaller binary if
         desired. We need this to tell our program to dump the profile to
-        the .prof file named a er our program.
+        the .prof file named after our program.
       - `-O2` enables the highest level of program optimizations.
 
 <!-- end list -->
@@ -83,7 +83,7 @@ stack ghc -- -prof -fprof-auto -rtsopts -O2 tmp.hs
 
 cat tmp.prof
 
-# profiling heap usage
+-- profiling heap usage
 ./tmp +RTS -hc -p
 hp2ps tmp.hp
 ```
@@ -93,6 +93,87 @@ hp2ps tmp.hp
     expressions in a module. CAFs can make some programs faster since
     you don’t have to keep re-evaluating shared values; but they can
     become memory-intensive quite quickly.
+    
       - values
       - partially applied functions with named arguments
       - fully appied functions
+
+  - Use Map when you have keys and values instead of assciation lists.
+    Using an Int as your key type is usually a sign you’d be better off
+    with a HashMap, IntMap, or Vector.
+
+  - Updates (cons and append) to both ends of the data structure and
+    concatenation are what Sequence is particularly known for.
+
+  - There are many variants of Vector. These include boxed, unboxed,
+    immutable, mutable, and storable vectors. The default Vector type is
+    implemented as a slice wrapper of Array. Thus slicing is quite
+    cheap. You want a vector when
+    
+      - you need memory efficiency close to the theoretical maximum for
+        the data you are working with
+      - your data access is almost exclusively in terms of indexing via
+        an Int value
+      - you want uniform access times for accessing each element in the
+        data structure
+      - you will construct a Vector once and read it many time; or ou
+        plan to use a mutable vector for efficient update
+
+  - String types
+    
+      - String. It’s a type alias for a list of Char, yet underneath
+        it’s not quite as simple as an actual list of Char.
+      - Text. compact representation in memory; efficient indexing into
+        the string.
+      - ByteString. Sequence of bytes represented (indirectly) as a
+        vector of Word8 values.
+
+## Chapter Exercises
+
+**Difference List**
+
+``` haskell literate haskell
+newtype DList a = DL { unDL :: [a] -> [a] }
+
+empty :: DList a
+empty = DL id
+{-# INLINE empty #-}
+
+singleton :: a -> DList a
+singleton a = DL (a :)
+{-# INLINE singleton #-}
+
+toList :: DList a -> [a]
+toList (DL f) = f []
+{-# INLINE toList #-}
+
+infixr `cons`
+cons :: a -> DList a -> DList a
+cons x (DL f) = DL ((x :) . f)
+
+infixl `snoc`
+snoc :: DList a -> a -> DList a
+snoc (DL f) x = DL (f . (x :))
+{-# INLINE snoc #-}
+
+append :: DList a -> DList a -> DList a
+append (DL f1) (DL f2) = DL (f1 . f2)
+{-# INLINE append #-}
+```
+
+**A simple queue**
+
+``` haskell literate haskell
+data Queue a =
+  Queue { enqueue :: [a]
+        , dequeue :: [a]
+        } deriving (Eq, Show)
+
+push :: a -> Queue a -> Queue a
+push a (Queue i o) = Queue (a : i) o
+
+pop :: Queue a -> Maybe (a, Queue a)
+pop (Queue [] []) = Nothing
+pop (Queue i [])  = pop $ Queue [] (reverse i)
+pop (Queue i o)   = Just (head o, Queue i (tail o))
+```

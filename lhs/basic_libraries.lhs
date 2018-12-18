@@ -75,7 +75,7 @@ stack ghc -- -prof -fprof-auto -rtsopts -O2 tmp.hs
 
 cat tmp.prof
 
-# profiling heap usage
+-- profiling heap usage
 ./tmp +RTS -hc -p
 hp2ps tmp.hp
 ```
@@ -108,4 +108,57 @@ hp2ps tmp.hp
     + you will construct a Vector once and read it many time; or ou plan to use
     a mutable vector for efficient update
 
+- String types
+    + String. It's a type alias for a list of Char, yet underneath it's not
+    quite as simple as an actual list of Char.
+    + Text. compact representation in memory; efficient indexing into the string.
+    + ByteString. Sequence of bytes represented (indirectly) as a vector of
+    Word8 values.
 
+
+Chapter Exercises
+------------------------
+
+**Difference List**
+
+> newtype DList a = DL { unDL :: [a] -> [a] }
+>
+> empty :: DList a
+> empty = DL id
+> {-# INLINE empty #-}
+>
+> singleton :: a -> DList a
+> singleton a = DL (a :)
+> {-# INLINE singleton #-}
+>
+> toList :: DList a -> [a]
+> toList (DL f) = f []
+> {-# INLINE toList #-}
+>
+> infixr `cons`
+> cons :: a -> DList a -> DList a
+> cons x (DL f) = DL ((x :) . f)
+>
+> infixl `snoc`
+> snoc :: DList a -> a -> DList a
+> snoc (DL f) x = DL (f . (x :))
+> {-# INLINE snoc #-}
+>
+> append :: DList a -> DList a -> DList a
+> append (DL f1) (DL f2) = DL (f1 . f2)
+> {-# INLINE append #-}
+
+**A simple queue**
+
+> data Queue a =
+>   Queue { enqueue :: [a]
+>         , dequeue :: [a]
+>         } deriving (Eq, Show)
+>
+> push :: a -> Queue a -> Queue a
+> push a (Queue i o) = Queue (a : i) o
+>
+> pop :: Queue a -> Maybe (a, Queue a)
+> pop (Queue [] []) = Nothing
+> pop (Queue i [])  = pop $ Queue [] (reverse i)
+> pop (Queue i o)   = Just (head o, Queue i (tail o))
