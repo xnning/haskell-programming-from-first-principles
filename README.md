@@ -34,3 +34,4 @@ Notes and exercises for book [Haskell Programming from first principles](http://
 - [ ] [Monad transformers](./notes/monad_transformers.md)
 - [x] [Non-strictness](./notes/non-strictness.md)
 - [x] [Basic libraries](./notes/basic_libraries.md)
+- [x] [IO](./notes/io.md)
