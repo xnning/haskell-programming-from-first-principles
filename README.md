@@ -35,3 +35,4 @@ Notes and exercises for book [Haskell Programming from first principles](http://
 - [x] [Non-strictness](./notes/non-strictness.md)
 - [x] [Basic libraries](./notes/basic_libraries.md)
 - [x] [IO](./notes/io.md)
+- [x] [When things go wrong](./notes/when_things_go_wrong.md)
